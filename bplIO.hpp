@@ -34,7 +34,8 @@
  *
  * This version needs from user to enable it when starting work
  * with it and disable it after work is finished, or when you want back to
- * standard library input methods.
+ * standard library input methods. Standard library's output methods like cout,
+ * or printf can be used simultaneously.
  *
  * It's destination are Unix systems.
  */
@@ -116,6 +117,18 @@ public:
         read(STDIN, buf, 1);
 
         return buf[0];
+    }
+
+    /**
+     * It clears input buffer from unread characters.
+     *
+     * @note bplIO need to be enabled with enableIO()
+     *
+     * @see enableIO
+     */
+    static void _flush()
+    {
+        ioctl(STDIN, TCFLSH, 0);
     }
 
 private:
